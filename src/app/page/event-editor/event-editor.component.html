@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-6 offset-3">
+        <form #eventForm="ngForm" (ngSubmit)="onFormSubmit(eventForm)">
+            <div class="form-group">
+                <label>Name</label>
+                <input [(ngModel)]="event.name" name="name" type="text" class="form-control" pattern=".{8,}" #eventName="ngModel" required>
+                <div [hidden]="eventName.valid || eventName.pristine" class="error-message">
+                    A névnek minimum 8 karakter hosszúnak kell lennie.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input [(ngModel)]="event.date" name="date" type="text" class="form-control" pattern="\d{1,2}/\d{1,2}/\d{4}" #eventDate="ngModel" required>
+                <div [hidden]="eventDate.valid || eventDate.pristine" class="error-message">
+                    Érvénytelen formátum.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input [(ngModel)]="event.time" name="time" type="text" class="form-control" pattern="^(0?[1-9]|1[0-2])\s*[aApP][mM]\s*$" #eventTime="ngModel" required>
+                <div [hidden]="eventTime.valid || eventTime.pristine" class="error-message">
+                    Érvénytelen formátum.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <input [(ngModel)]="event.location.address" name="address" type="text" class="form-control" pattern=".{5,}" #eventAddress="ngModel" required>
+                <div [hidden]="eventAddress.valid || eventAddress.pristine" class="error-message">
+                    A címnek minimum 5 karakter hosszúnak kell lennie.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input [(ngModel)]="event.location.city" name="city" type="text" class="form-control" pattern=".{4,}" #eventCity="ngModel" required>
+                <div [hidden]="eventCity.valid || eventCity.pristine" class="error-message">
+                    A városnak minimum 4 karakter hosszúnak kell lennie.
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Country</label>
+                <input [(ngModel)]="event.location.country" name="country" type="text" class="form-control" pattern=".{2,}" #eventCountry="ngModel" required>
+                <div [hidden]="eventCountry.valid || eventCountry.pristine" class="error-message">
+                    Az országnak minimum 2 karakter hosszúnak kell lennie.
+                </div>
+            </div>
+            <button [disabled]="!eventForm.form.valid" class="btn btn-block btn-primary">
+                <i class="fa fa-save"></i>
+            </button>
+        </form>
+    </div>
+</div>
